@@ -661,7 +661,7 @@ threadName:(NSString*)threadName
 
 
 void QNLogCtUpload(NSDate * _Nonnull d, QNLogCtUploadResultBlock _Nullable resultBlock) {
-    NSString* date = QNLogCtTodaysDate();
+    NSString* date = [LoganWrapper dateFormat:d];
     QNLogCtUploadFilePath(date, ^(NSString *_Nullable filePath) {
         if (filePath == nil) {
             if(resultBlock){

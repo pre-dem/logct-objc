@@ -23,9 +23,9 @@ typedef NS_ENUM(NSInteger, LogCtCategory) {
 /**
  Log Collector初始化
  
- @param host 服务器域名
+ @param server 服务器域名
  @param appKey 加密key
- @param max_file_size  日志文件最大大小，超过该大小后日志将不再被写入，单位：byte。
+ @param maxFileSize  日志文件最大大小，超过该大小后日志将不再被写入，单位：byte。
  */
 extern NSError * _Nullable QNLogCtInit(NSString* _Nonnull server, NSString* _Nonnull appKey, uint64_t maxFileSize);
 
@@ -98,9 +98,8 @@ extern void QNLogCtSetDeviceInfo(QNLogCtDeviceInfo* _Nonnull info);
 /**
 Log Collector 启动后台实时发送
 
-@param info  设备信息
 */
-extern void QNLogCtStartSender();
+extern void QNLogCtStartSender(void);
 
 /**
  实时发送一条日志
@@ -141,14 +140,14 @@ extern void QNLogCtUpload(NSDate * _Nonnull date, QNLogCtUploadResultBlock _Null
 /**
 是否要输出log 到ASL
 
-@param flag false 表示关闭，默认为关闭
+ @param flag false 表示关闭，默认为关闭
 */
-extern void QNLogCtDumpOutput(BOOL b);
+extern void QNLogCtDumpOutput(BOOL flag);
 
 /**
  设置本地保存最大文件天数
 
- @param max_reserved_date 超过该文件天数的文件会被删除，默认7天
+ @param max_reserved_days 超过该文件天数的文件会被删除，默认7天
  */
 extern void QNLogCtSetMaxReservedDays(int max_reserved_days);
 
@@ -168,7 +167,7 @@ extern void QNLogCtClearAllLogs(void);
  启动策略检查服务，判断是否需要上传日志
  */
 
-extern void QNLogCtStartUploadChecker();
+extern void QNLogCtStartUploadChecker(void);
 
 
 typedef NS_ENUM(NSInteger, LogCtErrorCode) {
